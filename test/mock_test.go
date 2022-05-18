@@ -33,7 +33,7 @@ func TestPassword(t *testing.T) {
 
 func TestMockTables(t *testing.T) {
 	// need sequence
-	handler := GetServiceHandler()
+	handler := GetServiceHandler(t)
 	InitMockTable(handler)
 	if !CheckTableExists(handler) {
 		t.Errorf("[FAIL] InitMockTable()")
