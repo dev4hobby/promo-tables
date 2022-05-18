@@ -21,8 +21,12 @@ flush: ## Drop all tables
 test: ## For CI and Local test
 	go test ./test -v
 
-.PHONY: build
-build: ## Build
+.PHONY: build-docker
+build-docker: ## Build docker image
+	docker-compose up --build
+
+.PHONY: build-go
+build-go: ## Build
 	go build -v
 
 .PHONY: clean

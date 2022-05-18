@@ -12,16 +12,20 @@ services:
       - "3307:3306"
     expose:
       - 3307
-    environment:
-      - MYSQL_USER=username
-      - MYSQL_PASSWORD=password
-      - MYSQL_ROOT_PASSWORD=password
-      - MYSQL_DATABASE=store
-    # It also works
+    # # It also works
     # volumes:
     #   - ./scripts/mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
     restart: unless-stopped
     platform: linux/x86_64
+    build:
+      context: ./Dockerfiles
+      dockerfile: Dockerfile.mysql
+    healthcheck:
+      test: ["CMD", "/usr/bin/timeout", "5", "mysql", "-h", "mysql", "-u", "root", "-p", "password", "-e", "SELECT 1"]
+      interval: 1m30s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
 
   redis:
     image: redis:latest
