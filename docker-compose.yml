@@ -23,7 +23,7 @@ services:
     restart: unless-stopped
     platform: linux/x86_64
     healthcheck:
-      test: ["CMD", "/usr/bin/timeout", "5", "mysql", "-h", "mysql", "-u", "root", "-p", "password", "-e", "SELECT 1"]
+      test: ["CMD", "/usr/bin/timeout", "5", "mysql", "-h", "mysql", "-u", "root", "-p", "store", "-e", "SELECT 1"]
       interval: 1m30s
       timeout: 30s
       retries: 5
