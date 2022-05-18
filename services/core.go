@@ -12,10 +12,12 @@ type Handler struct {
 }
 
 type HandlerInterface interface {
+	GetUsers() []models.User
 	GetProductByID(int) models.Product
 	GetCategories() []models.Category
 	GetAllProducts() []models.Product
 	GetCategoriesByName(string) []models.Category
+	GetAllPromoCategories() []models.PromoCategory
 	GetAllPromoControllers() []models.PromoController
 	AddUsers(int) error
 	AddProducts() error
@@ -24,6 +26,8 @@ type HandlerInterface interface {
 	AddUserStoreSubscriptions() error
 
 	InitMockTable()
+	GetMockTableInterfaceList() []interface{}
+	CheckTableExists([]interface{}) bool
 	FlushAllProgress()
 }
 
@@ -48,8 +52,4 @@ func MainHandler(cmd utils.Commands) {
 func NewHandler() (HandlerInterface, error) {
 	db, err := implement.NewORM()
 	return &Handler{db: db}, err
-}
-
-func Hello() string {
-	return "Hello, World"
 }

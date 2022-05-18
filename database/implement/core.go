@@ -15,6 +15,7 @@ type DBLayer interface {
 	GetAllPromoControllers() ([]models.PromoController, error)
 
 	// User
+	GetUsers() ([]models.User, error)
 	GetUsersFilteredBySubscribeCondition(models.PromoControllerSubscribeCondition) []models.User
 	AddUsers([]models.User) error
 	AddUserStoreSubscriptions([]models.UserStoreSubscription) error
@@ -25,7 +26,7 @@ type DBLayer interface {
 	GetProductByID(int) (models.Product, error)
 
 	// Misc
-	RowExists(interface{}) bool
+	RowExists(interface{}, int) int
 	InitTable(interface{})
 	FlushAll()
 }

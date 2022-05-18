@@ -2,8 +2,15 @@ package services
 
 import (
 	"promo-tables/database/models"
+	"promo-tables/utils"
 	"promo-tables/utils/mock"
 )
+
+func (h *Handler) GetUsers() []models.User {
+	users, err := h.db.GetUsers()
+	utils.CheckError(err)
+	return users
+}
 
 func (h *Handler) AddUsers(howMany int) error {
 	return h.db.AddUsers(GetUser(howMany))

@@ -1,8 +1,8 @@
 package implement
 
-func (db *ORM) RowExists(model interface{}) bool {
-	row := db.Limit(1).Find(&model)
-	return row.RowsAffected > 0
+func (db *ORM) RowExists(model interface{}, limit int) int {
+	rows := db.Limit(limit).Find(&model)
+	return int(rows.RowsAffected)
 }
 
 func (db *ORM) InitTable(model interface{}) {
