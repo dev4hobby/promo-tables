@@ -10,12 +10,14 @@ docker-compose up --build
 
 ```bash
 ❯ make help
-build                빌드 커맨드
-clean                바이너리 및 기타 생성된 리소스 제거
-flush                모든 진행상황 제거
-help                 도움말
-init                 테이블 초기화 커맨드
-test                 CI 및 로컬 테스트용 커맨드
+build-docker         Build docker image
+build-go             Build
+clean                Clean all build resources
+flush                Drop all tables
+help                 What you see here..
+init                 Init tables and insert mockdata
+test-clean           Expires all test results
+test                 For CI and Local test
 ```
 
 ## Tables

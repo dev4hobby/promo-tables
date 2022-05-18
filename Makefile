@@ -6,7 +6,7 @@ endef
 
 
 .PHONY: help
-help: ## 도움말
+help: ## What you see here..
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'
 
 .PHONY: init
@@ -21,6 +21,10 @@ flush: ## Drop all tables
 test: ## For CI and Local test
 	go test ./test -v
 
+.PHONY: test-clean
+test-clean: ## Expires all test results
+	go clean -testcache
+
 .PHONY: build-docker
 build-docker: ## Build docker image
 	docker-compose up --build
@@ -32,3 +36,4 @@ build-go: ## Build
 .PHONY: clean
 clean: ## Clean all build resources
 	rm -rf promo-tables promo-tables.exe
+	go clean -testcache
