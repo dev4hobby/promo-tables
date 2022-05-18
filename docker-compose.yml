@@ -16,10 +16,10 @@ services:
     # volumes:
     #   - ./scripts/mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
     environment:
-      - ENV MYSQL_DATABASE=store
-      - ENV MYSQL_USER=username
-      - ENV MYSQL_PASSWORD=password
-      - ENV MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=store
+      - MYSQL_USER=username
+      - MYSQL_PASSWORD=password
+      - MYSQL_ROOT_PASSWORD=password
     restart: unless-stopped
     platform: linux/x86_64
     healthcheck:
