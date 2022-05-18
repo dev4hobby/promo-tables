@@ -107,3 +107,7 @@ func JsonNumberToInt(x json.Number) int {
 	CheckError(err)
 	return int(i)
 }
+
+func SleepSeconds(seconds int) {
+	time.Sleep(time.Duration(seconds) * time.Second)
+}
