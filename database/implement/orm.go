@@ -1,7 +1,6 @@
 package implement
 
 import (
-	"fmt"
 	"promo-tables/utils"
 
 	"gorm.io/driver/mysql"
@@ -15,7 +14,6 @@ type ORM struct {
 func NewORM() (*ORM, error) {
 	env := utils.GetEnv()
 	dsn := env.MySQLUser + ":" + env.MySQLPassword + "@tcp(" + env.MySQLHost + ":" + env.MySQLPort + ")/" + env.MySQLDatabase + "?charset=utf8&parseTime=True&loc=Local"
-	fmt.Println("DSN >> ", dsn)
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	return &ORM{
 		DB: db,
