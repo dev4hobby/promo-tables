@@ -22,9 +22,6 @@ services:
       - ENV MYSQL_ROOT_PASSWORD=password
     restart: unless-stopped
     platform: linux/x86_64
-    build:
-      context: ./Dockerfiles
-      dockerfile: Dockerfile.mysql
     healthcheck:
       test: ["CMD", "/usr/bin/timeout", "5", "mysql", "-h", "mysql", "-u", "root", "-p", "password", "-e", "SELECT 1"]
       interval: 1m30s
