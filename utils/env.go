@@ -9,13 +9,15 @@ import (
 )
 
 type Env struct {
-	AppEnv        string `json:"APP_ENV"`
-	MySQLUser     string `json:"MYSQL_USER"`
-	MySQLPassword string `json:"MYSQL_PASSWORD"`
-	MySQLHost     string `json:"MYSQL_HOST"`
-	MySQLPort     string `json:"MYSQL_PORT"`
-	MySQLDatabase string `json:"MYSQL_DATABASE"`
-	MySQLCharset  string `json:"MYSQL_CHARSET"`
+	AppEnv                 string      `json:"APP_ENV"`
+	MySQLUser              string      `json:"MYSQL_USER"`
+	MySQLPassword          string      `json:"MYSQL_PASSWORD"`
+	MySQLHost              string      `json:"MYSQL_HOST"`
+	MySQLPort              string      `json:"MYSQL_PORT"`
+	MySQLDatabase          string      `json:"MYSQL_DATABASE"`
+	MySQLCharset           string      `json:"MYSQL_CHARSET"`
+	MockUserCount          json.Number `json:"MOCK_USER_COUNT"`
+	MockPromoCategoryCount json.Number `json:"MOCK_PROMO_CATEGORY_COUNT"`
 }
 
 var env Env

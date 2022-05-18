@@ -101,3 +101,9 @@ func PickRandomIndex(arr []int) int { // +1.18, we can refactor this to Generic 
 func GenerateRandomNumber(min, max int) int {
 	return rand.Intn(max-min) + min
 }
+
+func JsonNumberToInt(x json.Number) int {
+	i, err := x.Int64()
+	CheckError(err)
+	return int(i)
+}
