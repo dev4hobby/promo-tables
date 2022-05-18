@@ -5,12 +5,28 @@ import (
 	"promo-tables/utils"
 )
 
+var tableInterfaceList = []interface{}{
+	&models.User{},
+	&models.Order{},
+	&models.Product{},
+	&models.Category{},
+	&models.PromoCategory{},
+	&models.PromoController{},
+	&models.PromoPurchasedLog{},
+	&models.UserStoreSubscription{},
+}
+
+func (h *Handler) GetMockTableInterfaceList() []interface{} {
+	return tableInterfaceList
+}
+
 func (h *Handler) InitMockTable() {
-	h.CreateEmptyTable()
-	h.AddUsers(utils.GenerateRandomNumber(20, 200))
-	if !h.db.RowExists(&models.Category{}) {
+	env := utils.GetEnv()
+	h.CreateEmptyTable(tableInterfaceList)
+	if h.db.RowExists(&models.User{}, 1) < 1 {
+		h.AddUsers(utils.JsonNumberToInt(env.MockUserCount))
 		h.AddCategories()
-		h.AddPromoCategories(utils.GenerateRandomNumber(1, 5))
+		h.AddPromoCategories(utils.JsonNumberToInt(env.MockPromoCategoryCount))
 		h.AddPromoControllerByPromoCategories(h.GetAllPromoCategories(), true)
 		h.AddProducts()
 		h.AddUserStoreSubscriptions()
@@ -21,18 +37,15 @@ func (h *Handler) FlushAllProgress() {
 	h.db.FlushAll()
 }
 
-func (h *Handler) CreateEmptyTable() {
-	// User
-	h.db.InitTable(&models.User{})
+func (h *Handler) CreateEmptyTable(tableInterfaceList []interface{}) {
+	for _, tableInterface := range tableInterfaceList {
+		h.db.InitTable(tableInterface)
+	}
+}
 
-	// store
-	h.db.InitTable(&models.Order{})
-	h.db.InitTable(&models.Product{})
-	h.db.InitTable(&models.Category{})
-	h.db.InitTable(&models.UserStoreSubscription{})
-
-	// promotion
-	h.db.InitTable(&models.PromoCategory{})
-	h.db.InitTable(&models.PromoController{})
-	h.db.InitTable(&models.PromoPurchasedLog{})
+func (h *Handler) CheckTableExists(tableInterfaceList []interface{}) bool {
+	for _, tableInterface := range tableInterfaceList {
+		h.db.RowExists(tableInterface, 1)
+	}
+	return true
 }
