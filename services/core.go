@@ -31,7 +31,7 @@ type HandlerInterface interface {
 	FlushAllProgress()
 
 	// for testing
-	JoinTableAsQueryBuilder() bool
+	JoinTable() bool
 }
 
 func MainHandler(cmd utils.Commands) {

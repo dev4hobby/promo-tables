@@ -31,5 +31,5 @@ type DBLayer interface {
 	FlushAll()
 
 	// Test
-	JoinTableAsQueryBuilder() error
+	JoinTable() error
 }

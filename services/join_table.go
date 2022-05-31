@@ -1,5 +1,5 @@
 package services
 
-func (h *Handler) JoinTableAsQueryBuilder() bool {
-	return h.db.JoinTableAsQueryBuilder() != nil
+func (h *Handler) JoinTable() bool {
+	return h.db.JoinTable() != nil
 }
