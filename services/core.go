@@ -29,6 +29,9 @@ type HandlerInterface interface {
 	GetMockTableInterfaceList() []interface{}
 	CheckTableExists([]interface{}) bool
 	FlushAllProgress()
+
+	// for testing
+	JoinTableAsQueryBuilder() bool
 }
 
 func MainHandler(cmd utils.Commands) {

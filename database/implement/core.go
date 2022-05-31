@@ -29,4 +29,7 @@ type DBLayer interface {
 	RowExists(interface{}, int) int
 	InitTable(interface{})
 	FlushAll()
+
+	// Test
+	JoinTableAsQueryBuilder() error
 }

@@ -7,6 +7,7 @@ import (
 
 type PromoController struct {
 	ID                 int             `json:"id" gorm:"primary_key; AUTO_INCREMENT"`
+	PromoCategories    []PromoCategory `json:"promo_categories" gorm:"many2many:promo_controller_promo_category;"`
 	PromoCategoryID    int             `json:"promo_category_id"`
 	Description        string          `json:"description" gorm:"type:varchar(255)"`
 	BuyLimitCount      int             `json:"buy_limit_count" gorm:"default:1"`
